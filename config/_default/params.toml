@@ -1,0 +1,87 @@
+# Blowfish theme parameters — full reference at https://blowfish.page/docs/configuration/
+
+# Color scheme — "microbialquanta" is a custom scheme defined in assets/css/schemes/
+colorScheme = "microbialquanta"
+defaultAppearance = "dark"      # site is dark-first
+autoSwitchAppearance = false    # don't auto-flip based on OS; commit to dark
+
+# Layout
+mainSections = ["blog", "projects"]   # what appears in "recent" feeds on the homepage
+showAppearanceSwitcher = true
+showScrollToTop = true
+disableImageOptimization = false
+enableSearch = true
+enableCodeCopy = true
+
+# Article display defaults — overridable per-page in frontmatter
+[article]
+  showDate = true
+  showDateUpdated = false
+  showAuthor = true
+  showHero = true
+  heroStyle = "big"               # big | basic | thumbAndBackground | background
+  showBreadcrumbs = true
+  showDraftLabel = true
+  showEdit = false
+  showHeadingAnchors = true
+  showPagination = true
+  invertPagination = false
+  showReadingTime = true
+  showTableOfContents = true
+  showTaxonomies = true
+  showWordCount = false
+  sharingLinks = ["bluesky", "mastodon", "email"]
+
+# List page defaults
+[list]
+  showHero = false
+  showBreadcrumbs = false
+  showSummary = true
+  showCards = true
+  groupByYear = false
+  cardView = true
+  cardViewScreenWidth = false
+  constrainItemsWidth = false
+
+[homepage]
+  layout = "custom"               # use our custom layouts/_default/home.html
+  showRecent = true
+  showRecentItems = 4
+  showMoreLink = true
+  showMoreLinkDest = "blog"
+  cardView = true
+
+[header]
+  layout = "fixed"                # sticky header
+  showMenuButton = true
+
+[footer]
+  showCopyright = true
+  showThemeAttribution = true
+  showAppearanceSwitcher = false
+  showScrollToTop = true
+
+# Comments (Giscus) — fill in once Giscus app is installed
+[comments]
+  enabled = false
+  provider = "giscus"
+
+  [comments.giscus]
+    repo = "georgeschaible/microbialquanta"
+    repoId = ""                   # from giscus.app
+    category = "Comments"
+    categoryId = ""               # from giscus.app
+    mapping = "pathname"
+    strict = "0"
+    reactionsEnabled = "1"
+    emitMetadata = "0"
+    inputPosition = "bottom"
+    lazyLoading = false
+
+# Analytics — leave disabled
+[analytics]
+  enabled = false
+
+[verification]
+  google = ""
+  bing = ""

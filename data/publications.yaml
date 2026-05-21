@@ -1,0 +1,18 @@
+# Publications data — add new entries to the top of the list.
+# Required: title, authors, venue, year
+# Optional: doi, url, pdf, tags
+
+- title: "Example publication — replace with your real first entry"
+  authors: "Schaible, G.A., et al."
+  venue: "Nature Microbiology"
+  year: 2025
+  doi: "10.xxxx/example"
+  tags: ["single-cell", "raman", "thiovulum"]
+
+- title: "Example earlier work"
+  authors: "Schaible, G.A., Other, A.B., Third, C.D."
+  venue: "The ISME Journal"
+  year: 2023
+  doi: "10.xxxx/example2"
+  pdf: "/files/schaible-2023.pdf"
+  tags: ["sip", "nano-sims"]

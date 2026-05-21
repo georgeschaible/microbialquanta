@@ -1,0 +1,48 @@
+baseURL = "https://microbialquanta.com/"
+defaultContentLanguage = "en"
+languageCode = "en"
+title = "Microbial Quanta"
+
+theme = "blowfish"
+
+enableRobotsTXT = true
+summaryLength = 0
+
+buildDrafts = false
+buildFuture = false
+
+# Output formats — enable JSON for client-side search
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  section = ["HTML", "RSS"]
+
+[pagination]
+  pagerSize = 10
+
+# Markdown rendering — allow raw HTML in markdown (needed for some figures/embeds)
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    noClasses = false
+    lineNos = false
+    codeFences = true
+    guessSyntax = true
+    tabWidth = 2
+
+# Image processing defaults
+[imaging]
+  resampleFilter = "lanczos"
+  quality = 85
+  anchor = "smart"
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
+# Sitemap
+[sitemap]
+  changefreq = "weekly"
+  filename = "sitemap.xml"
+  priority = 0.5

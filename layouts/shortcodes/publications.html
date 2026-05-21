@@ -1,0 +1,58 @@
+{{/*
+  Publications shortcode.
+  Reads .Site.Data.publications and renders them grouped by year, newest first.
+
+  Each entry in data/publications.yaml should have:
+    title:    "..."
+    authors:  "Schaible G., Other A., ..."
+    venue:    "Journal Name"
+    year:     2025
+    doi:      "10.xxxx/yyyy"          (optional)
+    url:      "https://..."           (optional, used if no doi)
+    pdf:      "/files/foo.pdf"        (optional, link to local copy)
+    tags:     [single-cell, raman]    (optional)
+*/}}
+
+{{- $pubs := .Site.Data.publications -}}
+{{- if $pubs -}}
+  {{- $byYear := dict -}}
+  {{- range $pubs -}}
+    {{- $y := printf "%d" .year -}}
+    {{- $list := index $byYear $y | default (slice) -}}
+    {{- $list = $list | append . -}}
+    {{- $byYear = merge $byYear (dict $y $list) -}}
+  {{- end -}}
+
+  {{- $years := slice -}}
+  {{- range $y, $_ := $byYear -}}{{- $years = $years | append $y -}}{{- end -}}
+  {{- $years = sort $years "value" "desc" -}}
+
+  <div class="mq-publications">
+  {{- range $years -}}
+    {{- $y := . -}}
+    <h2 style="font-family:var(--font-display);font-weight:500;letter-spacing:-0.02em;margin-top:2rem;">{{ $y }}</h2>
+    <ul style="list-style:none;padding:0;">
+    {{- range index $byYear $y -}}
+      <li style="margin:1.25rem 0;padding-bottom:1.25rem;border-bottom:1px solid rgb(var(--color-neutral-800));">
+        <div style="font-weight:500;color:rgb(var(--color-neutral-100));line-height:1.4;">{{ .title }}</div>
+        <div style="color:rgb(var(--color-neutral-300));font-size:0.95em;margin-top:0.25rem;">{{ .authors }}</div>
+        <div style="color:rgb(var(--color-neutral-400));font-size:0.9em;margin-top:0.25rem;font-style:italic;">{{ .venue }}{{ if .year }} ({{ .year }}){{ end }}</div>
+        <div style="margin-top:0.5rem;font-size:0.875em;">
+          {{- with .doi -}}
+            <a href="https://doi.org/{{ . }}" style="margin-right:1rem;">doi:{{ . }}</a>
+          {{- end -}}
+          {{- with .url -}}
+            <a href="{{ . }}" style="margin-right:1rem;">link</a>
+          {{- end -}}
+          {{- with .pdf -}}
+            <a href="{{ . }}" style="margin-right:1rem;">PDF</a>
+          {{- end -}}
+        </div>
+      </li>
+    {{- end -}}
+    </ul>
+  {{- end -}}
+  </div>
+{{- else -}}
+  <p><em>No publications yet — add entries to <code>data/publications.yaml</code>.</em></p>
+{{- end -}}

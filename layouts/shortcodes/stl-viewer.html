@@ -1,0 +1,108 @@
+{{/*
+  STL viewer shortcode.
+  Usage: {{< stl-viewer src="/files/micromanipulator.stl" color="#3dd8c5" height="420" >}}
+
+  Loads Three.js + STLLoader from a CDN on demand. The viewer auto-fits
+  the loaded mesh, supports OrbitControls (drag-rotate, scroll-zoom),
+  and shows a download link below the canvas.
+*/}}
+
+{{- $src := .Get "src" -}}
+{{- $color := default "#3dd8c5" (.Get "color") -}}
+{{- $height := default "420" (.Get "height") -}}
+{{- $id := printf "stl-%s" (delimit (slice (.Page.RelPermalink) (.Ordinal)) "-") | anchorize -}}
+
+<div class="stl-viewer">
+  <div id="{{ $id }}" style="width:100%;height:{{ $height }}px;"></div>
+  <div class="stl-viewer-controls">
+    <span>Drag to rotate · scroll to zoom · right-click to pan</span>
+    <a href="{{ $src }}" download>Download STL</a>
+  </div>
+</div>
+
+<script type="module">
+  import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+  import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js';
+  import { STLLoader } from 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/loaders/STLLoader.js';
+
+  (function initViewer() {
+    const container = document.getElementById('{{ $id }}');
+    if (!container) return;
+
+    const width = container.clientWidth;
+    const height = {{ $height }};
+
+    const scene = new THREE.Scene();
+    scene.background = null;
+
+    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 5000);
+    camera.position.set(80, 60, 80);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(width, height);
+    container.appendChild(renderer.domElement);
+
+    // Three-point lighting
+    const ambient = new THREE.AmbientLight(0xffffff, 0.4);
+    scene.add(ambient);
+
+    const key = new THREE.DirectionalLight(0xffffff, 0.9);
+    key.position.set(1, 1, 1);
+    scene.add(key);
+
+    const fill = new THREE.DirectionalLight(0x4a9eed, 0.4);
+    fill.position.set(-1, 0.5, -1);
+    scene.add(fill);
+
+    const rim = new THREE.DirectionalLight(0x9b7aed, 0.3);
+    rim.position.set(0, -1, 1);
+    scene.add(rim);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.08;
+
+    const loader = new STLLoader();
+    loader.load('{{ $src }}', (geometry) => {
+      geometry.computeBoundingBox();
+      geometry.center();
+
+      const material = new THREE.MeshStandardMaterial({
+        color: new THREE.Color('{{ $color }}'),
+        metalness: 0.15,
+        roughness: 0.55,
+        flatShading: false,
+      });
+      const mesh = new THREE.Mesh(geometry, material);
+      scene.add(mesh);
+
+      // Auto-fit camera
+      const box = new THREE.Box3().setFromObject(mesh);
+      const size = box.getSize(new THREE.Vector3()).length();
+      camera.position.set(size, size * 0.75, size);
+      controls.target.set(0, 0, 0);
+      controls.update();
+    }, undefined, (err) => {
+      console.error('STL load failed:', err);
+      container.innerHTML =
+        '<div style="padding:1rem;color:#5a5750;font-family:Manrope,sans-serif;">' +
+        'STL file could not be loaded. Check the path: <code>{{ $src }}</code></div>';
+    });
+
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    // Handle resize
+    window.addEventListener('resize', () => {
+      const w = container.clientWidth;
+      camera.aspect = w / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, height);
+    });
+  })();
+</script>

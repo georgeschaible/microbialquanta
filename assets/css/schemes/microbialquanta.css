@@ -1,0 +1,86 @@
+/*
+ * Microbial Quanta — brand color scheme for Blowfish
+ *
+ * Brand palette:
+ *   sulfur-oxidizing teal   #3dd8c5
+ *   deep-water blue         #4a9eed
+ *   anaerobic violet        #9b7aed
+ *   warm amber              #e8a44a
+ *
+ * Background: #0e1219
+ * Light text: #e0ddd5
+ * Muted text: #5a5750
+ *
+ * Blowfish reads --color-* CSS vars as Tailwind RGB triplets ("R G B").
+ * The "primary" ramp drives accents, links, buttons, headings.
+ * The "neutral" ramp drives backgrounds, borders, body text.
+ * The "secondary" ramp drives muted text and secondary surfaces.
+ */
+
+:root {
+  /* PRIMARY — sulfur-oxidizing teal (#3dd8c5) anchored at 500.
+     The ramp is generated to flow from a pale teal at 50 to a deep teal at 900. */
+  --color-primary-50:  237 252 250;   /* #edfcfa */
+  --color-primary-100: 207 247 242;   /* #cff7f2 */
+  --color-primary-200: 158 239 229;   /* #9eefe5 */
+  --color-primary-300: 108 229 215;   /* #6ce5d7 */
+  --color-primary-400:  77 224 209;   /* #4de0d1 */
+  --color-primary-500:  61 216 197;   /* #3dd8c5  ← brand teal */
+  --color-primary-600:  48 183 167;   /* #30b7a7 */
+  --color-primary-700:  40 147 134;   /* #289386 */
+  --color-primary-800:  31 110 100;   /* #1f6e64 */
+  --color-primary-900:  23  74  67;   /* #174a43 */
+  --color-primary-950:  12  40  37;   /* #0c2825 */
+
+  /* SECONDARY — deep-water blue (#4a9eed) for secondary accents */
+  --color-secondary-50:  236 245 254;
+  --color-secondary-100: 207 227 252;
+  --color-secondary-200: 165 202 247;
+  --color-secondary-300: 124 177 243;
+  --color-secondary-400:  85 158 240;
+  --color-secondary-500:  74 158 237;   /* #4a9eed  ← brand blue */
+  --color-secondary-600:  53 130 200;
+  --color-secondary-700:  41  99 156;
+  --color-secondary-800:  29  71 112;
+  --color-secondary-900:  20  49  79;
+  --color-secondary-950:  10  26  43;
+
+  /* NEUTRAL — the dark background palette anchored on #0e1219.
+     Going darker at the high end gives us deep blacks for headers,
+     paler at the low end for body text. */
+  --color-neutral:     224 221 213;   /* #e0ddd5  ← brand light text */
+  --color-neutral-50:  245 244 240;
+  --color-neutral-100: 224 221 213;   /* light text */
+  --color-neutral-200: 196 191 178;
+  --color-neutral-300: 156 150 134;
+  --color-neutral-400: 116 110 102;
+  --color-neutral-500:  90  87  80;   /* #5a5750  ← muted text */
+  --color-neutral-600:  61  59  54;
+  --color-neutral-700:  41  46  56;
+  --color-neutral-800:  25  31  42;
+  --color-neutral-900:  18  23  32;
+  --color-neutral-950:  14  18  25;   /* #0e1219  ← page background */
+}
+
+/*
+ * Additional brand accents — exposed as utility classes so they can be used
+ * in shortcodes or markdown via inline classes (e.g. <span class="text-violet">).
+ */
+:root {
+  --brand-violet: #9b7aed;
+  --brand-amber:  #e8a44a;
+}
+
+/* Optional: a subtle gradient hairline above the footer for visual texture */
+.brand-hairline {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    #3dd8c5 25%,
+    #4a9eed 50%,
+    #9b7aed 75%,
+    transparent 100%
+  );
+  opacity: 0.4;
+}
