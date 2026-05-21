@@ -1,0 +1,155 @@
+{{ define "main" }}
+
+{{/*
+  Carousel slides come from frontmatter "carousel_slides" list.
+  Each slide has: label, title, detail, image (optional).
+  If no slides defined, fall back to four placeholder slides.
+*/}}
+{{ $slides := .Params.carousel_slides }}
+{{ $interval := .Params.carousel_interval_ms | default 7000 }}
+
+<section class="hero-carousel" id="heroCarousel" data-interval="{{ $interval }}">
+  {{ if $slides }}
+    {{ range $i, $slide := $slides }}
+    <div class="hero-slide {{ if eq $i 0 }}active{{ end }}{{ if not $slide.image }} placeholder-{{ add (mod $i 4) 1 }}{{ end }}"
+         {{ with $slide.image }}style="background-image: url('{{ . | relURL }}');"{{ end }}>
+      <div class="slide-caption">
+        {{ with $slide.label }}<div class="label">{{ . }}</div>{{ end }}
+        {{ with $slide.title }}<div class="title">{{ . | safeHTML }}</div>{{ end }}
+        {{ with $slide.detail }}<div class="detail">{{ . }}</div>{{ end }}
+      </div>
+    </div>
+    {{ end }}
+  {{ else }}
+    {{/* No slides defined, use four placeholders */}}
+    <div class="hero-slide placeholder-1 active">
+      <div class="slide-caption">
+        <div class="label">Placeholder slide one</div>
+        <div class="title">Add carousel slides in <em>content/_index.md</em></div>
+        <div class="detail">Edit the carousel_slides list in the home page frontmatter to set your hero images and captions.</div>
+      </div>
+    </div>
+    <div class="hero-slide placeholder-2">
+      <div class="slide-caption">
+        <div class="label">Placeholder slide two</div>
+        <div class="title">Each slide has a label, title, and detail</div>
+      </div>
+    </div>
+    <div class="hero-slide placeholder-3">
+      <div class="slide-caption">
+        <div class="label">Placeholder slide three</div>
+        <div class="title">Add an image field to use a real photo</div>
+      </div>
+    </div>
+    <div class="hero-slide placeholder-4">
+      <div class="slide-caption">
+        <div class="label">Placeholder slide four</div>
+        <div class="title">The slides auto-advance every seven seconds</div>
+      </div>
+    </div>
+  {{ end }}
+
+  {{ $count := len $slides }}
+  {{ if eq $count 0 }}{{ $count = 4 }}{{ end }}
+
+  <div class="carousel-nav">
+    <div class="carousel-counter">
+      <span class="current">1</span><span class="sep">/</span><span>{{ $count }}</span>
+    </div>
+    <div class="carousel-dots">
+      {{ range $i, $_ := (seq $count) }}
+        <button class="carousel-dot {{ if eq $i 0 }}active{{ end }}" data-slide="{{ $i }}" aria-label="Slide {{ add $i 1 }}"></button>
+      {{ end }}
+    </div>
+    <button class="carousel-arrow" id="nextSlide" aria-label="Next slide">&rarr;</button>
+  </div>
+</section>
+
+{{/*
+  Introduction, prose.
+  Set in frontmatter: intro_eyebrow, intro_headline, intro_paragraphs (list).
+*/}}
+{{ if or .Params.intro_headline .Params.intro_paragraphs }}
+<section class="introduction">
+  {{ with .Params.intro_eyebrow }}<div class="eyebrow">{{ . }}</div>{{ end }}
+  {{ with .Params.intro_headline }}<h1>{{ . | safeHTML }}</h1>{{ end }}
+  {{ range $i, $p := .Params.intro_paragraphs }}
+    <p{{ if eq $i 0 }} class="lede"{{ end }}>{{ $p | safeHTML }}</p>
+  {{ end }}
+</section>
+{{ end }}
+
+{{/*
+  Featured work magazine TOC.
+  Set in frontmatter: featured_label, featured_entries (list of {section, title, description, meta, url, image}).
+*/}}
+{{ if .Params.featured_entries }}
+<section class="featured-work">
+  <div class="section-label">{{ .Params.featured_label | default "Recent work" }}</div>
+  <div class="toc-entries">
+    {{ range $i, $entry := .Params.featured_entries }}
+    <a class="toc-entry" href="{{ $entry.url | relURL }}">
+      <div class="toc-meta">
+        <span class="num">{{ printf "%02d" (add $i 1) }}</span>
+        {{ $entry.section }}
+      </div>
+      <div class="toc-body">
+        <h3>{{ $entry.title | safeHTML }}</h3>
+        {{ with $entry.description }}<p class="description">{{ . }}</p>{{ end }}
+        {{ with $entry.meta }}<div class="meta-line">{{ . | safeHTML }}</div>{{ end }}
+      </div>
+      <div class="toc-thumbnail {{ if not $entry.image }}placeholder-{{ add (mod $i 4) 1 }}{{ end }}"
+           {{ with $entry.image }}style="background-image: url('{{ . | relURL }}');"{{ end }}></div>
+    </a>
+    {{ end }}
+  </div>
+  {{ with .Params.archive_link }}
+    <a class="more-link" href="{{ .url | relURL }}">{{ .prefix }} <strong>{{ .label }}</strong> &rarr;</a>
+  {{ end }}
+</section>
+{{ end }}
+
+{{/* Markdown body, if any, renders below */}}
+{{ with .Content }}
+<section class="article">
+  <div class="article-body">{{ . }}</div>
+</section>
+{{ end }}
+
+<script>
+(function() {
+  const carousel = document.getElementById('heroCarousel');
+  if (!carousel) return;
+  const slides = carousel.querySelectorAll('.hero-slide');
+  const dots = carousel.querySelectorAll('.carousel-dot');
+  const counter = carousel.querySelector('.carousel-counter .current');
+  const nextBtn = carousel.querySelector('#nextSlide');
+  const total = slides.length;
+  const interval = parseInt(carousel.dataset.interval) || 7000;
+  let current = 0;
+  let timer = null;
+
+  function show(idx) {
+    slides.forEach((s, i) => s.classList.toggle('active', i === idx));
+    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    if (counter) counter.textContent = idx + 1;
+    current = idx;
+  }
+  function next() { show((current + 1) % total); }
+  function reset() {
+    clearInterval(timer);
+    timer = setInterval(next, interval);
+  }
+
+  dots.forEach((d, i) => d.addEventListener('click', () => { show(i); reset(); }));
+  if (nextBtn) nextBtn.addEventListener('click', () => { next(); reset(); });
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) clearInterval(timer);
+    else reset();
+  });
+
+  reset();
+})();
+</script>
+
+{{ end }}

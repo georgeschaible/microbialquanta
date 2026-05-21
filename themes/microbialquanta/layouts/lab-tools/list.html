@@ -1,0 +1,33 @@
+{{ define "main" }}
+
+<header class="page-header">
+  {{ with .Params.eyebrow }}<div class="eyebrow">{{ . }}</div>{{ end }}
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+</header>
+
+{{ with .Content }}
+<section class="article" style="padding-bottom: 1rem;">
+  <div class="article-body">{{ . }}</div>
+</section>
+{{ end }}
+
+<section class="tools-grid">
+  {{ range .RegularPagesRecursive.ByWeight }}
+  <a class="tool-card" href="{{ .RelPermalink }}">
+    <div class="tool-image {{ if not .Params.cover_image }}placeholder{{ end }}"
+         {{ with .Params.cover_image }}style="background-image: url('{{ . | relURL }}');"{{ end }}></div>
+    <div class="tool-body">
+      <h3>{{ .Title }}</h3>
+      {{ with .Description }}<p class="tool-summary">{{ . }}</p>{{ end }}
+      <div class="tool-meta">
+        <span class="status {{ .Params.status | default "complete" }}"></span>
+        {{ .Params.status_label | default "Documented" }}
+        {{ with .Params.category }} &middot; {{ . }}{{ end }}
+      </div>
+    </div>
+  </a>
+  {{ end }}
+</section>
+
+{{ end }}

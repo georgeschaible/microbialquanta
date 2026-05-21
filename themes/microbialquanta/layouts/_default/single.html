@@ -1,0 +1,24 @@
+{{ define "main" }}
+
+<article class="article">
+  <header class="article-header">
+    {{ with .Params.eyebrow | default (.Section | humanize) }}
+      <div class="eyebrow">{{ . }}</div>
+    {{ end }}
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="lede" style="margin-top:0.5rem;">{{ . }}</p>{{ end }}
+    {{ if and .IsPage (ne .Section "") }}
+    <div class="article-meta">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>
+      {{ if .ReadingTime }}<span>{{ .ReadingTime }} min read</span>{{ end }}
+      {{ with .Params.tags }}<span>{{ delimit . ", " }}</span>{{ end }}
+    </div>
+    {{ end }}
+  </header>
+
+  <div class="article-body">
+    {{ .Content }}
+  </div>
+</article>
+
+{{ end }}

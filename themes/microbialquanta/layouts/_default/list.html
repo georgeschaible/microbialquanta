@@ -1,0 +1,34 @@
+{{ define "main" }}
+
+<header class="page-header">
+  {{ with .Params.eyebrow }}<div class="eyebrow">{{ . }}</div>{{ end }}
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+</header>
+
+{{ with .Content }}
+<section class="article">
+  <div class="article-body">{{ . }}</div>
+</section>
+{{ end }}
+
+{{ $pages := where .RegularPagesRecursive "Section" .Section }}
+{{ if $pages }}
+<section class="entry-list">
+  {{ range $pages.ByDate.Reverse }}
+  <a class="entry" href="{{ .RelPermalink }}">
+    <time class="entry-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 Jan 2006" }}</time>
+    <div class="entry-body">
+      <h2>{{ .Title }}</h2>
+      {{ with .Description }}<div class="desc">{{ . }}</div>{{ end }}
+      {{ with .Params.tags }}
+      <div class="tags">{{ delimit . " " }}</div>
+      {{ end }}
+    </div>
+    <div class="entry-arrow">&rarr;</div>
+  </a>
+  {{ end }}
+</section>
+{{ end }}
+
+{{ end }}

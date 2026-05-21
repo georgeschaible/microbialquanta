@@ -1,0 +1,55 @@
+{{ define "main" }}
+
+<header class="page-header">
+  {{ with .Params.eyebrow }}<div class="eyebrow">{{ . }}</div>{{ end }}
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+</header>
+
+<section class="article">
+  {{ with .Content }}
+  <div class="article-body" style="margin-bottom: 2rem;">{{ . }}</div>
+  {{ end }}
+
+  <div class="publications">
+    {{ $pubs := hugo.Data.publications }}
+    {{ if $pubs }}
+      {{ $byYear := dict }}
+      {{ range $pubs }}
+        {{ $y := printf "%d" .year }}
+        {{ $list := index $byYear $y | default (slice) }}
+        {{ $list = $list | append . }}
+        {{ $byYear = merge $byYear (dict $y $list) }}
+      {{ end }}
+
+      {{ $years := slice }}
+      {{ range $y, $_ := $byYear }}{{ $years = $years | append $y }}{{ end }}
+      {{ $years = sort $years "value" "desc" }}
+
+      {{ range $years }}
+        {{ $y := . }}
+        <h2>{{ $y }}</h2>
+        <ul>
+          {{ range index $byYear $y }}
+          <li>
+            <div class="pub-title">{{ .title | safeHTML }}</div>
+            <div class="pub-authors">{{ .authors | safeHTML }}</div>
+            <div class="pub-venue">{{ .venue | safeHTML }}</div>
+            {{ if or .doi .url .pdf }}
+            <div class="pub-links">
+              {{ with .doi }}<a href="https://doi.org/{{ . }}" target="_blank" rel="noopener">doi {{ . }}</a>{{ end }}
+              {{ with .url }}<a href="{{ . }}" target="_blank" rel="noopener">link</a>{{ end }}
+              {{ with .pdf }}<a href="{{ . }}">PDF</a>{{ end }}
+            </div>
+            {{ end }}
+          </li>
+          {{ end }}
+        </ul>
+      {{ end }}
+    {{ else }}
+      <p style="color: var(--ink-soft);"><em>No publications yet, add entries to <code>data/publications.yaml</code></em></p>
+    {{ end }}
+  </div>
+</section>
+
+{{ end }}

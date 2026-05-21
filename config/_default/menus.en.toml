@@ -4,29 +4,24 @@
   weight = 10
 
 [[main]]
-  name = "Projects"
-  pageRef = "projects"
+  name = "Publications"
+  pageRef = "publications"
   weight = 20
 
 [[main]]
-  name = "Microelectronics"
-  pageRef = "microelectronics"
+  name = "Lab Tools"
+  pageRef = "lab-tools"
   weight = 30
 
 [[main]]
-  name = "Publications"
-  pageRef = "publications"
+  name = "Outreach"
+  pageRef = "outreach"
   weight = 40
-
-[[main]]
-  name = "Blog"
-  pageRef = "blog"
-  weight = 50
 
 [[main]]
   name = "About"
   pageRef = "about"
-  weight = 60
+  weight = 50
 
 [[footer]]
   name = "GitHub"
@@ -34,6 +29,16 @@
   weight = 10
 
 [[footer]]
+  name = "Bluesky"
+  url = "https://bsky.app/profile/quantaofgeorge.bsky.social"
+  weight = 20
+
+[[footer]]
+  name = "ORCID"
+  url = "https://orcid.org/0000-0002-1031-4682"
+  weight = 30
+
+[[footer]]
   name = "RSS"
   url = "/index.xml"
-  weight = 20
+  weight = 40

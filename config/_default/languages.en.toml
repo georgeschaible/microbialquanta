@@ -1,26 +1,4 @@
 locale = "en"
 label = "English"
 weight = 1
-
 title = "Microbial Quanta"
-
-[params]
-  displayName = "George Schaible"
-  isMainAuthor = true
-  description = "Microbiology, ultrastructure, and DIY scientific instruments"
-  # Image used for OG / Twitter cards — placed in assets/
-  # image = "img/og-image.png"
-  headline = "Exploring the physiology, cellular biology, and ultrastructure of uncultured microorganisms using next-generation techniques to connect single-cell processes to ecosystem-scale impacts."
-
-[author]
-  name = "George Schaible"
-  image = "img/avatar.jpg"
-  headline = "Postdoctoral researcher · UC Santa Barbara"
-  bio = "Microbiologist studying *Thiovulum* and other uncultured sulfur-oxidizing bacteria. Builder of DIY scientific instruments."
-  links = [
-    { email = "mailto:contact@microbialquanta.com" },
-    { github = "https://github.com/georgeschaible" },
-    { bluesky = "https://bsky.app/profile/quantaofgeorge.bsky.social" },
-    { orcid = "https://orcid.org/0000-0000-0000-0000" },
-    { rss = "/index.xml" },
-  ]

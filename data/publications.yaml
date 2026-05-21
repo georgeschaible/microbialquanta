@@ -1,18 +1,60 @@
-# Publications data — add new entries to the top of the list.
-# Required: title, authors, venue, year
-# Optional: doi, url, pdf, tags
+# Publications, sorted chronologically (newest first).
+# Add new entries at the top.
 
-- title: "Example publication — replace with your real first entry"
-  authors: "Schaible, G.A., et al."
-  venue: "Nature Microbiology"
+- title: "Comparing Raman and NanoSIMS for heavy water labeling of single cells"
+  authors: "Schaible GA, Cliff JB, Crandall JA, Bougoure JJ, Mathuri MN, Sessions AL, Atwood J, Hatzenpichler R"
+  venue: "Microbiology Spectrum"
   year: 2025
-  doi: "10.xxxx/example"
-  tags: ["single-cell", "raman", "thiovulum"]
+  doi: "10.1128/spectrum.01659-24"
 
-- title: "Example earlier work"
-  authors: "Schaible, G.A., Other, A.B., Third, C.D."
-  venue: "The ISME Journal"
-  year: 2023
-  doi: "10.xxxx/example2"
-  pdf: "/files/schaible-2023.pdf"
-  tags: ["sip", "nano-sims"]
+- title: "Multicellular magnetotactic bacteria are genetically heterogeneous consortia with metabolically differentiated cells"
+  authors: "Schaible GA, Jay ZJ, Cliff J, Schulz F, Gauvin C, Goudeau D, Malmstrom RR, Ruff SE, Edgcomb V, Hatzenpichler R"
+  venue: "PLOS Biology, 22(7), e3002638"
+  year: 2024
+  doi: "10.1371/journal.pbio.3002638"
+
+- title: "Towards process-driven research, stepping away from the binary biogenicity vs abiogenicity approach"
+  authors: "Borges SR, Schaible GA, Sagasti AJ, Teece BL, Soares GG, Barlow EV, Gangidine A"
+  venue: "Astrobiology"
+  year: 2024
+
+- title: "Chapter 1, The Astrobiology Primer 3.0"
+  authors: "Schaible MJ, Szeinbaum N, Bozdag GO, Chou L, Grefenstette N, Colón-Santos S, Rodriguez LE, Styczinski MJ, Thweatt JL, Todd ZR, Schaible GA, et al."
+  venue: "Astrobiology, 24(S1), S-4"
+  year: 2024
+
+- title: "Chapter 2, What Is Life?"
+  authors: "Colón-Santos S, Vázquez-Salazar A, Adams A, Campillo-Balderas JA, Hernández-Morales R, Jácome R, Muñoz-Velasco I, Rodriguez LE, Schaible MJ, Schaible GA, Szeinbaum N"
+  venue: "Astrobiology, 24(S1), S-40"
+  year: 2024
+
+- title: "Chapter 5, Major Biological Innovations in the History of Life on Earth"
+  authors: "Bozdag GO, Szeinbaum N, Conlin PL, Chen K, Fos SM, Garcia A, Penev PI, Schaible GA, Trubl G"
+  venue: "Astrobiology, 24(S1), S-107"
+  year: 2024
+
+- title: "Chapter 11, Astrobiology Education, Engagement, and Resources"
+  authors: "Styczinski MJ, Glaser DM, Hooks M, Jia TZ, Johnson-Finn K, Schaible GA, Schaible MJ"
+  venue: "Astrobiology, 24(S1), S-216"
+  year: 2024
+
+- title: "Correlative SIP-FISH-Raman-SEM-NanoSIMS links identity, morphology, biochemistry, and physiology of environmental microbes"
+  authors: "Schaible GA, Kohtz AJ, Cliff J, Hatzenpichler R"
+  venue: "ISME Communications, 2(1), 52"
+  year: 2022
+  doi: "10.1038/s43705-022-00134-3"
+
+- title: "The molecular dimension of microbial species 2. Synechococcus strains representative of putative ecotypes inhabiting different depths in the Mushroom Spring microbial mat exhibit different adaptive and acclimative responses to light"
+  authors: "Nowack S, Olsen MT, Schaible GA, Becraft ED, Shen G, Klapper I, Bryant DA, Ward DM"
+  venue: "Frontiers in Microbiology, 6, 626"
+  year: 2015
+
+- title: "Characterization of an endophytic Gloeosporium sp. and its novel bioactivity with synergistans"
+  authors: "Schaible GA, Strobel GA, Mends MT, Geary B, Sears J"
+  venue: "Microbial Ecology, 70, 41-50"
+  year: 2015
+
+- title: "The Paleobiosphere, a novel device for the in vivo testing of hydrocarbon producing-utilizing microorganisms"
+  authors: "Strobel G, Booth E, Schaible GA, Mends MT, Sears J, Geary B"
+  venue: "Biotechnology Letters, 35, 539-552"
+  year: 2013

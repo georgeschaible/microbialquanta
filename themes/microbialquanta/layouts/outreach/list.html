@@ -1,0 +1,28 @@
+{{ define "main" }}
+
+<header class="page-header">
+  {{ with .Params.eyebrow }}<div class="eyebrow">{{ . }}</div>{{ end }}
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+</header>
+
+{{ with .Content }}
+<section class="article" style="padding-bottom: 1rem;">
+  <div class="article-body">{{ . }}</div>
+</section>
+{{ end }}
+
+{{ if .Params.activities }}
+<section class="outreach-grid">
+  {{ range .Params.activities }}
+  <div class="outreach-item">
+    {{ with .date }}<div class="date">{{ . }}</div>{{ end }}
+    <h3>{{ .title }}</h3>
+    {{ with .institution }}<div class="institution">{{ . }}</div>{{ end }}
+    {{ with .description }}<p>{{ . | safeHTML }}</p>{{ end }}
+  </div>
+  {{ end }}
+</section>
+{{ end }}
+
+{{ end }}

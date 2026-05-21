@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang | default "en" }}" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo {{ hugo.Version }}">
+
+  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+
+  {{ with .Description | default .Site.Params.description }}
+  <meta name="description" content="{{ . }}">
+  {{ end }}
+
+  <link rel="canonical" href="{{ .Permalink }}">
+
+  <meta property="og:title" content="{{ .Title }}">
+  <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  {{ with .Description | default .Site.Params.description }}
+  <meta property="og:description" content="{{ . }}">
+  {{ end }}
+  <meta property="og:site_name" content="{{ .Site.Title }}">
+
+  {{ with resources.Get "css/main.css" }}
+    {{ $css := . | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+  {{ end }}
+
+  <link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" href="{{ "index.xml" | absURL }}">
+  <link rel="icon" type="image/png" href="/favicon.png">
+</head>
+<body>
+
+{{ partial "nav-strip.html" . }}
+{{ partial "site-nav.html" . }}
+
+<main>
+  {{ block "main" . }}{{ end }}
+</main>
+
+{{ partial "footer.html" . }}
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.querySelector('.menu-toggle');
+    const menu = document.querySelector('.site-nav .menu');
+    if (btn && menu) {
+      btn.addEventListener('click', () => menu.classList.toggle('open'));
+    }
+  });
+</script>
+
+</body>
+</html>

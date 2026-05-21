@@ -1,15 +1,9 @@
 ---
 title: "Publications"
-description: "Peer-reviewed publications"
-showReadingTime: false
-showTableOfContents: false
+description: "Peer-reviewed publications on uncultured microbes, single-cell techniques, and microbial physiology."
+eyebrow: "Publications"
 ---
 
-Selected publications. Full list also available on [Google Scholar](https://scholar.google.com/citations?user=YOUR_ID) and [ORCID](https://orcid.org/0000-0000-0000-0000).
+Selected publications and book chapters. A complete list is also available on [Google Scholar](https://scholar.google.com/) and via my [ORCID profile](https://orcid.org/0000-0002-1031-4682).
 
-<!--
-  This page renders the data/publications.yaml file via the
-  publications.html partial. To add a publication, edit that YAML file.
--->
-
-{{< publications >}}
+Manuscripts in review or in preparation are not listed here.

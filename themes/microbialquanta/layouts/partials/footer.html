@@ -1,0 +1,25 @@
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div>
+      <div class="footer-brand">
+        {{ $brand := .Site.Title }}
+        {{ $parts := split $brand " " }}
+        {{ if eq (len $parts) 2 }}
+          {{ index $parts 0 }} <span class="accent">{{ index $parts 1 }}</span>
+        {{ else }}
+          {{ $brand }}
+        {{ end }}
+      </div>
+      <div class="footer-tagline">{{ .Site.Params.description }}</div>
+    </div>
+    <ul class="footer-links">
+      {{ range .Site.Menus.footer }}
+        <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+      {{ end }}
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; {{ now.Format "2006" }} {{ .Site.Params.author_name | default "George Schaible" }}</span>
+    <span>Built with Hugo <span class="strip-dot" style="background: rgba(255,255,255,0.4); margin: 0 0.5rem;"></span> Open source on <a href="https://github.com/georgeschaible/microbialquanta" style="color:inherit;border-bottom:1px solid currentColor;">GitHub</a></span>
+  </div>
+</footer>

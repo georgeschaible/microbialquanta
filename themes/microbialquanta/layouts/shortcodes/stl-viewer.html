@@ -1,0 +1,52 @@
+{{- $src := .Get "src" -}}
+{{- $color := default "#3dd8c5" (.Get "color") -}}
+{{- $height := default "420" (.Get "height") -}}
+{{- $id := printf "stl-%s" (delimit (slice (.Page.RelPermalink) (string .Ordinal)) "-") | anchorize -}}
+
+<div class="stl-viewer" style="border: 1px solid var(--rule); border-radius: 6px; background: var(--bg-soft); margin: 2rem 0; overflow: hidden;">
+  <div id="{{ $id }}" style="width: 100%; height: {{ $height }}px;"></div>
+  <div style="padding: 0.5rem 1rem; border-top: 1px solid var(--rule); font-size: 0.78rem; color: var(--ink-soft); display: flex; justify-content: space-between; align-items: center; font-family: var(--font-sans);">
+    <span>Drag to rotate, scroll to zoom, right click to pan</span>
+    <a href="{{ $src }}" download style="color: var(--teal-deep); font-weight: 500;">Download STL</a>
+  </div>
+</div>
+
+<script type="module">
+  import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+  import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js';
+  import { STLLoader } from 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/loaders/STLLoader.js';
+  (function() {
+    const container = document.getElementById('{{ $id }}');
+    if (!container) return;
+    const width = container.clientWidth;
+    const height = {{ $height }};
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xf0efe9);
+    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 5000);
+    camera.position.set(80, 60, 80);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(width, height);
+    container.appendChild(renderer.domElement);
+    scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+    const key = new THREE.DirectionalLight(0xffffff, 0.8); key.position.set(1, 1, 1); scene.add(key);
+    const fill = new THREE.DirectionalLight(0x4a9eed, 0.3); fill.position.set(-1, 0.5, -1); scene.add(fill);
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true; controls.dampingFactor = 0.08;
+    new STLLoader().load('{{ $src }}', (geometry) => {
+      geometry.computeBoundingBox(); geometry.center();
+      const material = new THREE.MeshStandardMaterial({ color: new THREE.Color('{{ $color }}'), metalness: 0.15, roughness: 0.55 });
+      const mesh = new THREE.Mesh(geometry, material); scene.add(mesh);
+      const box = new THREE.Box3().setFromObject(mesh);
+      const size = box.getSize(new THREE.Vector3()).length();
+      camera.position.set(size, size * 0.75, size);
+      controls.target.set(0, 0, 0); controls.update();
+    });
+    (function animate() { requestAnimationFrame(animate); controls.update(); renderer.render(scene, camera); })();
+    window.addEventListener('resize', () => {
+      const w = container.clientWidth;
+      camera.aspect = w / height; camera.updateProjectionMatrix();
+      renderer.setSize(w, height);
+    });
+  })();
+</script>
