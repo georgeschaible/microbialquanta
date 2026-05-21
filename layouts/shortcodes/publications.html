@@ -1,6 +1,6 @@
 {{/*
   Publications shortcode.
-  Reads .Site.Data.publications and renders them grouped by year, newest first.
+  Reads hugo.Data.publications and renders them grouped by year, newest first.
 
   Each entry in data/publications.yaml should have:
     title:    "..."
@@ -13,7 +13,7 @@
     tags:     [single-cell, raman]    (optional)
 */}}
 
-{{- $pubs := .Site.Data.publications -}}
+{{- $pubs := hugo.Data.publications -}}
 {{- if $pubs -}}
   {{- $byYear := dict -}}
   {{- range $pubs -}}

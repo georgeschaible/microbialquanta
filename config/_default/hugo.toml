@@ -1,6 +1,6 @@
 baseURL = "https://microbialquanta.com/"
 defaultContentLanguage = "en"
-languageCode = "en"
+locale = "en"
 title = "Microbial Quanta"
 
 theme = "blowfish"
