@@ -2,7 +2,8 @@
 
 {{/*
   Carousel slides come from frontmatter "carousel_slides" list.
-  Each slide has: label, title, detail, image (optional).
+  Each slide has: label, title, detail, image (optional), credit (optional).
+  Credit is a map: { text: "...", url: "..." } where url is optional.
   If no slides defined, fall back to four placeholder slides.
 */}}
 {{ $slides := .Params.carousel_slides }}
@@ -16,7 +17,12 @@
       <div class="slide-caption">
         {{ with $slide.label }}<div class="label">{{ . }}</div>{{ end }}
         {{ with $slide.title }}<div class="title">{{ . | safeHTML }}</div>{{ end }}
-        {{ with $slide.detail }}<div class="detail">{{ . }}</div>{{ end }}
+        {{ with $slide.detail }}<div class="detail">{{ . | safeHTML }}</div>{{ end }}
+        {{ with $slide.credit }}
+          <div class="credit">
+            {{ if .url }}<a href="{{ .url }}" target="_blank" rel="noopener">{{ .text | safeHTML }}</a>{{ else }}{{ .text | safeHTML }}{{ end }}
+          </div>
+        {{ end }}
       </div>
     </div>
     {{ end }}
