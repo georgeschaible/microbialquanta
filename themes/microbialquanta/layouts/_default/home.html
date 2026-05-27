@@ -74,6 +74,7 @@
 {{/*
   Introduction, prose.
   Set in frontmatter: intro_eyebrow, intro_headline, intro_paragraphs (list).
+  Optional: intro_portrait (path to image), intro_portrait_alt (alt text).
 */}}
 {{ if or .Params.intro_headline .Params.intro_paragraphs }}
 <section class="introduction">
@@ -81,6 +82,11 @@
   {{ with .Params.intro_headline }}<h1>{{ . | safeHTML }}</h1>{{ end }}
   {{ range $i, $p := .Params.intro_paragraphs }}
     <p{{ if eq $i 0 }} class="lede"{{ end }}>{{ $p | safeHTML }}</p>
+  {{ end }}
+  {{ with .Params.intro_portrait }}
+    <div class="intro-portrait">
+      <img src="{{ . | relURL }}" alt="{{ $.Params.intro_portrait_alt | default "Portrait" }}">
+    </div>
   {{ end }}
 </section>
 {{ end }}

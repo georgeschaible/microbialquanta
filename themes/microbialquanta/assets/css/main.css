@@ -351,7 +351,26 @@ a { color: inherit; text-decoration: none; }
 }
 .introduction a:hover { border-bottom-color: var(--teal-deep); }
 .introduction em { font-style: italic; }
-
+.intro-portrait {
+  margin: 3rem auto 0;
+  text-align: center;
+  max-width: 50rem;
+}
+.intro-portrait img {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--rule);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  display: inline-block;
+}
+@media (max-width: 640px) {
+  .intro-portrait img {
+    width: 240px;
+    height: 240px;
+  }
+}
 /* =============================================================
    Featured work, magazine table of contents
    ============================================================= */

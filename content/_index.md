@@ -38,8 +38,13 @@ intro_eyebrow: "A research site by George Schaible"
 intro_headline: "<em>Microbial Quanta</em>"
 intro_paragraphs:
   - "A <em>quantum</em> is a discrete, meaningful unit. For microbes, that might be a molecule, a gene, a cell, a community, or a biogeochemical cycle. Each is a unit of a different scale of the same biology that collectively influences life on Earth."
-  - "I study microbial dark matter, the microbes in nature that have never been cultivated. I apply cultivation techniques and cultivation-free methods to investigate the complexity of microbes at the single-cell and community level, examining their ultrastructure and ecophysiology across different quanta to address mechanistic questions about microbial life. Different quanta, same question, <em>what is actually happening here, and how?</em>"
+  - "I study microbial dark matter, the microbes in nature that have never been cultivated. I apply cultivation techniques and cultivation-free methods to investigate the complexity of microbes at the single-cell and community level, examining their ultrastructure and ecophysiology in their native environments. Across these quanta, I work to understand the mechanisms that drive microbial life."
   - "George Schaible, Postdoctoral researcher, UC Santa Barbara"
+
+# Portrait, shown at the end of the intro section, below the signature line.
+# Drop the file in static/images/ and reference it here.
+intro_portrait: "/images/george-portrait.jpg"
+intro_portrait_alt: "George Schaible holding a sediment core at the UCSB lagoon"
 
 # === Featured work (magazine table of contents) ===
 featured_label: "Recent work"
