@@ -4,7 +4,7 @@ description: "George Schaible, postdoctoral researcher at UC Santa Barbara study
 eyebrow: "About"
 ---
 
-I am a postdoctoral researcher in the Molecular, Cellular, and Developmental Biology Department at UC Santa Barbara, working with Dr. Jean-Marie Volland. My research focuses on the sulfur-oxidizing bacterium *Thiovulum*, the fastest swimming bacterium known.
+I am a postdoctoral researcher in the Molecular, Cellular, and Developmental Biology Department at UC Santa Barbara, working with [Dr. Jean-Marie Volland](https://www.vollandlab.com/). My research focuses on the sulfur-oxidizing bacterium *Thiovulum*, the fastest swimming bacterium known.
 
 I am interested in microbes we cannot easily grow in pure culture, and in the techniques that let us study them anyway. My work combines single-cell methods such as Raman microspectroscopy, FISH, SIP-NanoSIMS, and correlative electron microscopy with the slow and patient work of cultivation, in cases where cultivation turns out to be possible after all.
 
@@ -19,7 +19,7 @@ University of California, Santa Barbara
 ## Previous positions
 
 **Postdoctoral Researcher**, January 2024 to June 2024
-Hatzenpichler Lab, Chemistry and Biochemistry Department
+[Hatzenpichler Lab](http://www.environmental-microbiology.com/), Chemistry and Biochemistry Department
 Montana State University
 
 **Quality Control Technician**, July 2016 to July 2018
@@ -29,7 +29,7 @@ GlaxoSmithKline (GSK) Pharmaceuticals, Microbiology Department, Hamilton MT
 
 **PhD in Biochemistry**, Montana State University, 2024
 Molecular Bioscience Fellow, August 2018 to January 2024
-Advisor, Dr. Roland Hatzenpichler
+Advisor, [Dr. Roland Hatzenpichler](http://www.environmental-microbiology.com/)
 Dissertation work on multicellular magnetotactic bacteria
 
 **BS in Microbial Biotechnology**, Montana State University, 2014
@@ -57,4 +57,4 @@ GitHub, [@georgeschaible](https://github.com/georgeschaible)
 ORCID, [0000-0002-1031-4682](https://orcid.org/0000-0002-1031-4682)
 Bluesky, [@quantaofgeorge.bsky.social](https://bsky.app/profile/quantaofgeorge.bsky.social)
 
-A current CV is available as a [PDF](/files/schaible-cv.pdf). Drop the file in `static/files/` to enable the link.
+A current CV is available as a [PDF](/files/schaible-cv.pdf).
