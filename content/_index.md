@@ -1,6 +1,6 @@
 ---
 title: "Microbial Quanta"
-description: "Microbiology, ultrastructure, and DIY scientific instruments"
+description: "George Schaible, postdoctoral microbiologist at UC Santa Barbara studying Thiovulum and uncultured microbes, building open-source lab instruments."
 
 # === Hero carousel ===
 # Slides auto-advance every carousel_interval_ms (default 7000 = 7 seconds).
