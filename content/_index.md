@@ -7,7 +7,7 @@ description: "George Schaible, postdoctoral microbiologist at UC Santa Barbara s
 # Each slide can have an image (drop file in static/images/ and reference here).
 # Optional credit field: { text: "...", url: "..." } where url is optional.
 # If no image, a brand color gradient placeholder is used.
-carousel_interval_ms: 7000
+carousel_interval_ms: 10000
 carousel_slides:
   - label: "Fig 1, Scanning Electron Microscopy"
     title: "<em>Multicellular magnetotactic bacteria</em>"
