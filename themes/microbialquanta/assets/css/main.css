@@ -371,6 +371,34 @@ a { color: inherit; text-decoration: none; }
     height: 240px;
   }
 }
+
+.about-photo {
+  margin: 3rem auto 3rem;
+  text-align: center;
+  max-width: 50rem;
+}
+.about-photo img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  display: inline-block;
+}
+.about-photo figcaption {
+  margin-top: 0.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  letter-spacing: 0.02em;
+  font-style: italic;
+}
+@media (max-width: 640px) {
+  .about-photo img {
+    max-width: 100%;
+  }
+}
+
 /* =============================================================
    Featured work, magazine table of contents
    ============================================================= */
@@ -579,9 +607,9 @@ a { color: inherit; text-decoration: none; }
 
    ============================================================= */
 .tools-list {
-  max-width: var(--max-width);
+  max-width: 76rem;
   margin: 0 auto;
-  padding: 2rem var(--pad-x) 6rem;
+  padding: 2rem 3rem 6rem;
 }
 
 .tool-entry {

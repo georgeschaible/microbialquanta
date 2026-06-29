@@ -10,6 +10,12 @@ I am interested in microbes we cannot easily grow in pure culture, and in the te
 
 I also build my own scientific instruments. Almost everything I use day to day for sample handling, custom microscopy, and field work is 3D printed, microcontroller-based, or both. Anything I build, I share openly.
 
+<figure class="about-photo">
+  <img src="/images/me-and-ruger.jpg" alt="George with his dog Ruger at the Ancient Bristlecone Pine Forest in California">
+  <figcaption>Ancient Bristlecone Pine Forest, California, with Ruger</figcaption>
+</figure>
+
+
 ## Current position
 
 **Postdoctoral Researcher**, June 2024 to present
