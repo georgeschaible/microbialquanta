@@ -12,22 +12,85 @@
 </section>
 {{ end }}
 
-<section class="tools-grid">
-  {{ range .RegularPagesRecursive.ByWeight }}
-  <a class="tool-card" href="{{ .RelPermalink }}">
-    <div class="tool-image {{ if not .Params.cover_image }}placeholder{{ end }}"
-         {{ with .Params.cover_image }}style="background-image: url('{{ . | relURL }}');"{{ end }}></div>
-    <div class="tool-body">
-      <h3>{{ .Title }}</h3>
-      {{ with .Description }}<p class="tool-summary">{{ . }}</p>{{ end }}
-      <div class="tool-meta">
-        <span class="status {{ .Params.status | default "complete" }}"></span>
-        {{ .Params.status_label | default "Documented" }}
-        {{ with .Params.category }} &middot; {{ . }}{{ end }}
+<section class="tools-list">
+  {{ range $i, $tool := .RegularPagesRecursive.ByWeight }}
+  {{ $reverse := mod $i 2 }}
+  <article class="tool-entry{{ if eq $reverse 1 }} reverse{{ end }}" id="{{ .File.BaseFileName }}">
+
+    {{ $images := .Params.images }}
+    {{ if $images }}
+    <div class="tool-gallery" data-gallery-id="gallery-{{ $i }}">
+      <div class="gallery-main">
+        <img src="{{ index $images 0 | relURL }}" alt="{{ .Title }}" id="main-{{ $i }}">
       </div>
+      {{ if gt (len $images) 1 }}
+      <div class="gallery-thumbs">
+        {{ range $j, $img := $images }}
+        <button class="gallery-thumb{{ if eq $j 0 }} active{{ end }}"
+                data-src="{{ $img | relURL }}"
+                data-target="main-{{ $i }}"
+                aria-label="Show image {{ add $j 1 }} of {{ len $images }}">
+          <img src="{{ $img | relURL }}" alt="" loading="lazy">
+        </button>
+        {{ end }}
+      </div>
+      {{ end }}
     </div>
-  </a>
+    {{ else }}
+    <div class="tool-gallery">
+      <div class="gallery-main placeholder placeholder-{{ add (mod $i 4) 1 }}"></div>
+    </div>
+    {{ end }}
+
+    <div class="tool-text">
+      <h2>{{ .Title }}</h2>
+      {{ with .Description }}<p class="tool-description">{{ . | safeHTML }}</p>{{ end }}
+      {{ with .Content }}<div class="tool-body">{{ . }}</div>{{ end }}
+
+      {{ if or .Params.github_url .Params.thingiverse_url .Params.files_url }}
+      <div class="tool-links">
+        {{ with .Params.github_url }}
+        <a href="{{ . }}" target="_blank" rel="noopener" class="tool-link">
+          <span class="link-label">GitHub</span>
+          <span class="link-arrow">&rarr;</span>
+        </a>
+        {{ end }}
+        {{ with .Params.thingiverse_url }}
+        <a href="{{ . }}" target="_blank" rel="noopener" class="tool-link">
+          <span class="link-label">Thingiverse</span>
+          <span class="link-arrow">&rarr;</span>
+        </a>
+        {{ end }}
+        {{ with .Params.files_url }}
+        <a href="{{ . }}" class="tool-link">
+          <span class="link-label">Files</span>
+          <span class="link-arrow">&rarr;</span>
+        </a>
+        {{ end }}
+      </div>
+      {{ end }}
+    </div>
+
+  </article>
   {{ end }}
 </section>
+
+<script>
+(function() {
+  document.querySelectorAll('.gallery-thumb').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var src = btn.getAttribute('data-src');
+      var targetId = btn.getAttribute('data-target');
+      var main = document.getElementById(targetId);
+      if (main) main.src = src;
+      var gallery = btn.closest('.tool-gallery');
+      gallery.querySelectorAll('.gallery-thumb').forEach(function(t) {
+        t.classList.remove('active');
+      });
+      btn.classList.add('active');
+    });
+  });
+})();
+</script>
 
 {{ end }}
