@@ -15,7 +15,13 @@
 {{ if .Params.activities }}
 <section class="outreach-grid">
   {{ range .Params.activities }}
+  {{ $title := .title }}
   <div class="outreach-item">
+    {{ with .image }}
+    <div class="outreach-image">
+      <img src="{{ . | relURL }}" alt="{{ $title }}" loading="lazy">
+    </div>
+    {{ end }}
     {{ with .date }}<div class="date">{{ . }}</div>{{ end }}
     <h3>{{ .title }}</h3>
     {{ with .institution }}<div class="institution">{{ . }}</div>{{ end }}

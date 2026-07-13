@@ -7,26 +7,31 @@ activities:
   - date: "January 2025"
     title: "Matters Microbial Podcast"
     institution: "microbe.tv"
+    image: "/images/matters-microbial-podcast.jpg"
     description: "Guest on the podcast discussing the work performed during my PhD on multicellular magnetotactic bacteria and the techniques used to study them. <a href='https://www.microbe.tv/mm/mm-076/'>Listen to the episode</a>."
 
   - date: "February 2021 to January 2024"
     title: "Science Art Project"
     institution: "Montana State University, founder and organizer"
+    image: "/images/science-art-project.png"
     description: "A project that brings science to the community through the medium of art. Pairs scientists with artists to translate research questions and images into public-facing work."
 
   - date: "August 2019 to January 2024"
     title: "Astrobiology Journal Club"
     institution: "Montana State University, co-founder and president"
+    image: "/images/astrobiology-journal-club.png"
     description: "A weekly journal club aimed at creating a collaborative astrobiology community on campus. Open to undergraduate and graduate students across departments."
 
   - date: "January 2020 to January 2022"
     title: "Chemistry and Biochemistry Graduate Student Association"
     institution: "Montana State University, co-chair"
+    image: "/images/graduate-student-association.png"
     description: "An association of graduate students that provides a supportive environment for graduate students, with peer mentoring, social events, and advocacy."
 
   - date: "August 2019 to May 2020"
     title: "STEM Storyteller Fellow"
     institution: "Montana State University"
+    image: "/images/stem-storytellers.png"
     description: "A multi-disciplinary fellowship program to improve science communication skills, with training in public speaking, writing, and visual communication."
 ---
 
