@@ -47,7 +47,7 @@
       {{ with .Description }}<p class="tool-description">{{ . | safeHTML }}</p>{{ end }}
       {{ with .Content }}<div class="tool-body">{{ . }}</div>{{ end }}
 
-      {{ if or .Params.github_url .Params.thingiverse_url .Params.files_url }}
+      {{ if or .Params.github_url .Params.thingiverse_url .Params.files_url .Params.hackaday_url }}
       <div class="tool-links">
         {{ with .Params.github_url }}
         <a href="{{ . }}" target="_blank" rel="noopener" class="tool-link">
@@ -58,6 +58,12 @@
         {{ with .Params.thingiverse_url }}
         <a href="{{ . }}" target="_blank" rel="noopener" class="tool-link">
           <span class="link-label">Thingiverse</span>
+          <span class="link-arrow">&rarr;</span>
+        </a>
+        {{ end }}
+        {{ with .Params.hackaday_url }}
+        <a href="{{ . }}" target="_blank" rel="noopener" class="tool-link">
+          <span class="link-label">Hackaday</span>
           <span class="link-arrow">&rarr;</span>
         </a>
         {{ end }}
