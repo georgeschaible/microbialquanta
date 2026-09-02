@@ -7,4 +7,4 @@ affiliation_institution = "University of California, Santa Barbara"
 # Cloudflare Web Analytics beacon token.
 # Find it under Analytics & Logs > Web Analytics in the Cloudflare dashboard,
 # or via the API (see the README section in setup-analytics.sh).
-cloudflare_analytics_token = "REPLACE_ME"
+cloudflare_analytics_token = "44bb20b2553f4645a5bff7c84f190145"
