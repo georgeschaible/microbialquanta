@@ -3,3 +3,8 @@ description = "Microbiology, ultrastructure, and DIY scientific instruments"
 author_name = "George Schaible"
 affiliation_title = "Postdoctoral researcher"
 affiliation_institution = "University of California, Santa Barbara"
+
+# Cloudflare Web Analytics beacon token.
+# Find it under Analytics & Logs > Web Analytics in the Cloudflare dashboard,
+# or via the API (see the README section in setup-analytics.sh).
+cloudflare_analytics_token = "REPLACE_ME"

@@ -1,0 +1,19 @@
+{{/*
+  Analytics beacon.
+
+  Renders only when BOTH are true:
+    - this is a production build (so `hugo server` sessions are not counted)
+    - cloudflare_analytics_token is set to a real value in params.toml
+
+  Cloudflare Web Analytics is cookieless and collects no personal data, so
+  no consent banner is required.
+*/}}
+{{- if hugo.IsProduction -}}
+  {{- with site.Params.cloudflare_analytics_token -}}
+    {{- if ne . "REPLACE_ME" }}
+<!-- Cloudflare Web Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon='{"token": "{{ . }}"}'></script>
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
